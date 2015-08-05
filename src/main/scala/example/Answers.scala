@@ -28,7 +28,10 @@ object Answers {
       }
     }
 
-    go(0, numbers.length - 1)
+    numbers match{
+      case Nil=>Failure(new NoSuchElementException)
+      case _ =>go(0, numbers.length - 1)
+    }
   }
 
   def qsort(numbers: List[Int]): List[Int] = numbers match {
