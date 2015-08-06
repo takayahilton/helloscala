@@ -9,8 +9,8 @@ import NinetyNineScalaProblems.workingList
 
 class s99Test extends Properties("s99") {
 
-  property("length") = forAll{ list: List[Int] =>
-    workingList.length(list) == list.length
+  property("length") = forAll{ (xs:List[Int],ys:List[Int]) =>
+    workingList.length(xs) +  workingList.length(ys) == workingList.length(xs ::: ys)
   }
 
   property("reverse") = forAll{ list:List[Int]=>
