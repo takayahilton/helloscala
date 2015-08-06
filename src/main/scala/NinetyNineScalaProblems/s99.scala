@@ -54,9 +54,9 @@ object workingList {
   }
 
   //p12
-  def decode[A](seq: Seq[(Int, A)]): Seq[A] = seq.map {
+  def decode[A](seq: Seq[(Int, A)]): Seq[A] = seq.flatMap {
     case (i, a) => Seq.fill(i)(a)
-  }.flatten
+  }
 
   //p14
   def duplicate[A](seq: Seq[A]): Seq[A] = seq.flatMap(a => List(a, a))
