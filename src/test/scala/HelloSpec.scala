@@ -2,7 +2,7 @@
 import org.scalacheck.Properties
 import org.scalacheck.Prop.forAll
 import org.scalacheck.Gen.choose
-import example.Answers
+import Practice.Answers
 
 import scala.util.{Success, Failure}
 

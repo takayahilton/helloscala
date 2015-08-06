@@ -1,4 +1,4 @@
-package example
+package Practice
 
 import scala.util.{Failure, Try, Success}
 
