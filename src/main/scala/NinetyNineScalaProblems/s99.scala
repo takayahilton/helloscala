@@ -34,7 +34,7 @@ object workingList {
   //P08
   def compress[A](list: List[A]): List[A] = list match {
     case Nil => Nil
-    case head :: tail => head :: compress(tail.dropWhile(_ != head))
+    case head :: tail => head :: compress(tail.dropWhile(_ == head))
   }
 
   //P09
@@ -74,9 +74,15 @@ object workingList {
     case _ :: tail => drop(n - 1, tail)
   }
 
-  def range(n: Int, m: Int): List[Int] = n match {
-    case _ if n > m => Nil
-    case _ => n :: range(n + 1, m)
+  //p22
+  def range(n: Int, m: Int): List[Int] = {
+    def go(total: List[Int]): List[Int] = total match {
+      case _ if n > m => total
+      case Nil => go(List(n))
+      case head::tail if head >= m => total
+      case head::_ => go((head+1)::total)
+    }
+    go(Nil).reverse
   }
 
 }
