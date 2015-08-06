@@ -6,7 +6,7 @@ import Practice.Answers
 
 import scala.util.{Success, Failure}
 
-class exampleTest extends Properties("list"){
+class PracticeTest extends Properties("list"){
 
   property("getSum") = forAll{ (list:List[Int]) =>
     Answers.getSum(list) == list.sum
