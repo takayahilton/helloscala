@@ -27,7 +27,7 @@ object workingList {
 
   def reverse[A](list: List[A]): List[A] = list.foldLeft(Nil: List[A])((reversList, head) => reversList :+ head)
 
-  def palindrome[A](list: List[A]): Boolean = list == list.reverse
+  def isPalindrome[A](list: List[A]): Boolean = list == list.reverse
 
   def compress[A](list: List[A]): List[A] = list match {
     case Nil => Nil
