@@ -1,5 +1,7 @@
 package NinetyNineScalaProblems
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader
+
 /**
  * Created by tim on 15/08/05.
  */
@@ -63,5 +65,18 @@ object workingList {
 
   //p15
   def duplicateN[A](n: Int, list: List[A]) = list.flatMap(a => List.fill(n)(a))
+
+  //p16
+  def drop[A](n: Int, list: List[A]): List[A] = list match {
+    case _ if n < 0 => Nil
+    case Nil => Nil
+    case l if n == 0 => l
+    case _ :: tail => drop(n - 1, tail)
+  }
+
+  def range(n: Int, m: Int): List[Int] = n match {
+    case _ if n > m => Nil
+    case _ => n :: range(n + 1, m)
+  }
 
 }
