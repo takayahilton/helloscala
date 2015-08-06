@@ -36,12 +36,15 @@ object workingList {
   }
 
   //P09
-  def pack[A](list: List[A]):List[List[A]] = list match{
+  def pack[A](list: List[A]): List[List[A]] = list match {
     case Nil => Nil
-    case l@(head::tail)=> {
+    case l@(head :: tail) => {
       val t = l.span(_ == head)
       List(t._1) ::: pack(t._2)
     }
   }
+
+  //p10
+  def encode[A](list: List[A]) = pack(list).map(la => la.length -> la.head)
 
 }
