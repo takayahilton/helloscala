@@ -4,6 +4,8 @@ import scala.util.{Failure, Try, Success}
 
 /**
  * Created by tim on 15/08/05.
+ * https://gist.github.com/j5ik2o/7264785 と
+ * https://gist.github.com/j5ik2o/7210762 の問題
  */
 object Answers {
 
@@ -64,4 +66,6 @@ object Answers {
   }
 
   def getSum(numbers: List[Int]): Long = numbers.foldLeft(0)(_ + _)
+
+
 }
