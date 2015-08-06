@@ -10,4 +10,4 @@ libraryDependencies ++= Seq(
 )
 
 
-initialCommands in console := " import example.Answers._"
+initialCommands in console := " import NinetyNineScalaProblems.workingList._"

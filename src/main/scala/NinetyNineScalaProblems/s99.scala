@@ -29,9 +29,19 @@ object workingList {
 
   def isPalindrome[A](list: List[A]): Boolean = list == list.reverse
 
+  //P08
   def compress[A](list: List[A]): List[A] = list match {
     case Nil => Nil
-    case head :: tail => head :: compress(tail.filter(_ != head))
+    case head :: tail => head :: compress(tail.dropWhile(_ != head))
+  }
+
+  //P09
+  def pack[A](list: List[A]):List[List[A]] = list match{
+    case Nil => Nil
+    case l@(head::tail)=> {
+      val t = l.span(_ == head)
+      List(t._1) ::: pack(t._2)
+    }
   }
 
 }
