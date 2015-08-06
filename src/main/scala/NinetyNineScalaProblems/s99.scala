@@ -47,4 +47,21 @@ object workingList {
   //p10
   def encode[A](list: List[A]) = pack(list).map(la => la.length -> la.head)
 
+  //p11
+  def encodeModified[A](list: List[A]) = encode(list).map {
+    case (1, a) => a
+    case x => x
+  }
+
+  //p12
+  def decode[A](list: List[(Int, A)]): List[A] = list.map {
+    case (i, a) => List.fill(i)(a)
+  }.flatten
+
+  //p14
+  def duplicate[A](list: List[A]): List[A] = list.flatMap(a => List(a, a))
+
+  //p15
+  def duplicateN[A](n: Int, list: List[A]) = list.flatMap(a => List.fill(n)(a))
+
 }
