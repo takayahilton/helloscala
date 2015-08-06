@@ -13,8 +13,8 @@ class s99Test extends Properties("s99") {
     workingList.length(xs) + workingList.length(ys) == workingList.length(xs ::: ys)
   }
 
-  property("reverse") = forAll { list: List[String] =>
-    workingList.reverse(list) == workingList.reverse(workingList.reverse(list))
+  property("reverse") = forAll { list: List[Int] =>
+    workingList.reverse(workingList.reverse(list)) == list
   }
 
   property("compress") = forAll { list: List[Int] =>
@@ -33,7 +33,7 @@ class s99Test extends Properties("s99") {
     workingList.duplicate(list).length == list.length * 2
   }
 
-  val intList = Gen.listOf(Gen.choose(0, 100))
+  val intList = Gen.listOf(Gen.choose(-100, 100))
 
   property("duplicateN") = forAll(choose(0, 100), intList) { (n: Int, list: List[Int]) =>
     workingList.duplicateN(n, list).length == list.length * n
