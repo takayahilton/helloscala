@@ -27,7 +27,7 @@ object workingList {
 
   def length[A](list: List[A]): Int = list.foldLeft(0)((total, _) => total + 1)
 
-  def reverse[A](list: List[A]): List[A] = list.foldLeft(Nil: List[A])((reversList, head) => reversList :+ head)
+  def reverse[A](list: List[A]): List[A] = list.foldLeft(Nil: List[A])((reversList, head) => head :: reversList)
 
   def isPalindrome[A](list: List[A]): Boolean = list == list.reverse
 
@@ -79,8 +79,8 @@ object workingList {
     def go(total: List[Int]): List[Int] = total match {
       case _ if n > m => total
       case Nil => go(List(n))
-      case head::tail if head >= m => total
-      case head::_ => go((head+1)::total)
+      case head :: tail if head >= m => total
+      case head :: _ => go((head + 1) :: total)
     }
     go(Nil).reverse
   }
