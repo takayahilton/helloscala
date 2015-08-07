@@ -8,11 +8,13 @@ trait Semigroup[F] {
 }
 
 
-object Semigroup{
+object SemigroupInstance{
 
-  val IntSemigroup = new Semigroup[Int] {
+  implicit def IntSemigroup = new Semigroup[Int] {
     def append(f1:Int,f2: =>Int)= f1 + f2
   }
+
+
 
 
 }

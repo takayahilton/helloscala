@@ -1,6 +1,8 @@
 import MyList.MyList
+import MyOption.MyOption
 import TypeClasses.Monoid
 import TypeClasses.MonoidInstance._
+import TypeClasses.SemigroupInstance._
 import TypeClassOps.OpsInstance._
 
 /**
@@ -10,6 +12,8 @@ object Main extends App{
 
   val tes = MyList(1,2,3) |+| MyList(1,2,3)
 
-  println(s"${tes}")
+  val tes2 = MyOption(1) |+|  MyOption(2)
+
+  println(s"${tes2}")
 
 }
