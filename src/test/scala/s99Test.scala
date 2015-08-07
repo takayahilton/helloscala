@@ -33,7 +33,6 @@ class s99Test extends Properties("s99") {
     workingList.duplicate(list).length == list.length * 2
   }
 
-  val intList = Gen.listOf(Gen.choose(-100, 100))
 
   property("duplicateN") = forAll(choose(0, 100), intList) { (n: Int, list: List[Int]) =>
     workingList.duplicateN(n, list).length == list.length * n
