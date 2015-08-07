@@ -1,7 +1,7 @@
 import MyList.MyList
 import TypeClasses.Monoid
 import TypeClasses.MonoidInstance._
-import TypeClassOps.MonoidOps._
+import TypeClassOps.OpsInstance._
 
 /**
  * Created by tim on 15/08/07.
