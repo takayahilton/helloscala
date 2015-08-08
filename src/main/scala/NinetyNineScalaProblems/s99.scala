@@ -5,6 +5,9 @@ package NinetyNineScalaProblems
  */
 object workingList {
 
+  def test()="test"
+
+
   def last[A](seq: Seq[A]): A = seq match {
     case head +: Seq() => head
     case _ +: tail => last(tail)
