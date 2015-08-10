@@ -1,5 +1,6 @@
 package TypeClasses
 
+import scala.language.higherKinds
 import MyList.MyList
 
 /**

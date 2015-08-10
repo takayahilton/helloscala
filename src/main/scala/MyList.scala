@@ -15,7 +15,7 @@ sealed trait MyList[+A] {
       case (_, b) => b
     }
 
-    def map[B](g: C => B) = this.flatMap(x => MyList(g(x)))
+    def map[B](g: C => B) = flatMap(x => MyList(g(x)))
   }
 
   def foldLeft[B](z: B)(f: (B, A) => B): B = this match {
@@ -23,19 +23,19 @@ sealed trait MyList[+A] {
     case MyCons(head, tail) => tail.foldLeft(f(z, head))(f)
   }
 
-  def foldRight[B](z: B)(f: (A, B) => B): B = (this.foldLeft((x: B) => x)((g, a) => b => g(f(a, b))))(z)
+  def foldRight[B](z: B)(f: (A, B) => B): B = (foldLeft((x: B) => x)((g, a) => b => g(f(a, b))))(z)
 
-  def length = this.foldLeft(0)((b,a)=>b+1)
+  def length = foldLeft(0)((b,a)=>b+1)
 
   def ::[B >: A](b: B): MyList[B] = MyCons(b, this)
 
-  def reverse: MyList[A] = this.foldLeft(MyNil: MyList[A])((b, a) => a :: b)
+  def reverse: MyList[A] = foldLeft(MyNil: MyList[A])((b, a) => a :: b)
 
-  def ++[B >: A](b: MyList[B]): MyList[B] = this.foldRight(b)((a, b) => a :: b)
+  def ++[B >: A](b: MyList[B]): MyList[B] = foldRight(b)((a, b) => a :: b)
 
-  def flatMap[B](f: A => MyList[B]): MyList[B] = this.foldRight(MyNil: MyList[B])((a, b) => f(a) ++ b)
+  def flatMap[B](f: A => MyList[B]): MyList[B] = foldRight(MyNil: MyList[B])((a, b) => f(a) ++ b)
 
-  def map[B](f: A => B): MyList[B] = this.flatMap(x => MyList(f(x)))
+  def map[B](f: A => B): MyList[B] = flatMap(x => MyList(f(x)))
 
   def filter(f: A => Boolean): MyList[A] = foldRight(MyNil: MyList[A]) {
     case (a, b) if f(a) => a :: b
@@ -44,7 +44,7 @@ sealed trait MyList[+A] {
 
   def withFilter[B >: A](f: B => Boolean) = WithFilter(f)
 
-  def find(f: A => Boolean): MyOption[A] = this.foldLeft(MyNone: MyOption[A]) {
+  def find(f: A => Boolean): MyOption[A] = foldLeft(MyNone: MyOption[A]) {
     case (b@MySome(_), _) => b
     case (b, a) if f(a) => MySome(a)
     case _ => MyNone
