@@ -10,8 +10,8 @@ import scala.language.higherKinds
 
 object OpsInstance{
 
-  implicit class toMonoidOp[A:Monoid](a:A) {
-     def |+|(a2:A) = implicitly[Monoid[A]].append(a,a2)
+  implicit class toMonoidOp[A:Monoid](a1:A) {
+     def |+|(a2:A) = implicitly[Monoid[A]].append(a1,a2)
   }
 
   implicit class toFunctorOp[F[_]:Functor,A](fa:F[A]){
