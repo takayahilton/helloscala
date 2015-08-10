@@ -2,6 +2,8 @@ package TypeClassOps
 
 import MyList.MyList
 import TypeClasses.{Functor, Monoid}
+import scala.language.higherKinds
+
 /**
  * Created by tim on 15/08/07.
  */
