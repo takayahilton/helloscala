@@ -23,7 +23,10 @@ sealed trait MyList[+A] {
     case MyCons(head, tail) => tail.foldLeft(f(z, head))(f)
   }
 
-  def foldRight[B](z: B)(f: (A, B) => B): B = (foldLeft((x: B) => x)((g, a) => b => g(f(a, b))))(z)
+  def foldRight[B](z: => B)(f: (A, => B) => B): B = this match {
+    case MyNil => z
+    case MyCons(head, tail) => f(head, tail.foldRight(z)(f))
+  }
 
   def length = foldLeft(0)((b, a) => b + 1)
 
@@ -44,19 +47,12 @@ sealed trait MyList[+A] {
 
   def withFilter[B >: A](f: B => Boolean) = WithFilter(f)
 
-  /*
-  途中で条件を満たしても、全要素を走査してしまう。
-  def find(f: A => Boolean): MyOption[A] = foldLeft(MyNone: MyOption[A]) {
-    case (b@MySome(_), _) => b
-    case (b, a) if f(a) => MySome(a)
-    case _ => MyNone
-  }
-  */
-
-  def find(f: A => Boolean): MyOption[A] = this match {
-    case MyNil => MyNone
-    case MyCons(head, tail) if f(head) => MySome(head)
-    case MyCons(head, tail) => tail.find(f)
+  //foldRightを使って全走査しないバージョン
+  def find(f: A => Boolean): MyOption[A] = {
+    def g(a: A, b: => MyOption[A]) = {
+      println(a); if (f(a)) MyOption(a) else b
+    }
+    foldRight(MyNone: MyOption[A])(g)
   }
 
 
