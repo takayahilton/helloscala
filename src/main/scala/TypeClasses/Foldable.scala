@@ -1,5 +1,7 @@
 package TypeClasses
 
+import scala.language.higherKinds
+
 /**
  * Created by tim on 15/08/10.
  */

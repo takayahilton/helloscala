@@ -49,7 +49,7 @@ sealed trait MyList[+A] {
 
   //foldRightを使って全走査しないバージョン
   def find(f: A => Boolean): MyOption[A] = {
-    def g(a: A, b: => MyOption[A]) = {
+    def g(a: A, b:  =>MyOption[A]) = {
       println(a); if (f(a)) MyOption(a) else b
     }
     foldRight(MyNone: MyOption[A])(g)
