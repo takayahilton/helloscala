@@ -44,7 +44,7 @@ sealed trait MyOption[+A] {
     case x => x
   }
 
-  def flatten[B](implicit A:A <:< MyOption[B]) = flatMap(a=>a)
+  def flatten[B](implicit A: A <:< MyOption[B]) = flatMap(a => a)
 
 }
 

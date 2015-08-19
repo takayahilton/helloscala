@@ -46,6 +46,15 @@ class MyOptionSpec extends FunSpec with Matchers {
     }
   }
 
+  describe("MyOption#flatten"){
+    it("should return MyOption's value if it contains MySome"){
+      MyOption(MyOption(100)).flatten shouldBe MySome(100)
+    }
+    it("shoud return MyNone if it is MyNone"){
+      MyNone.flatten shouldBe MyNone
+    }
+  }
+
   describe("MyOption#filter") {
     it("should return MySome if the predicate returns true") {
       MySome(100).filter(_ > 0) shouldBe MySome(100)
