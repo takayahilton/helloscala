@@ -47,6 +47,8 @@ sealed trait MyList[+A] {
 
   def withFilter[B >: A](f: B => Boolean) = WithFilter(f)
 
+  def flatten[B](implicit A: A <:< MyList[B]) = flatMap(f => f)
+
   //foldRightを使って全走査しないバージョン
   def find(f: A => Boolean): MyOption[A] = {
     def g(a: A, b:  =>MyOption[A]) = {
