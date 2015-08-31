@@ -5,15 +5,16 @@ import TypeClasses.MonoidInstance._
 import TypeClasses.SemigroupInstance._
 import TypeClassOps.OpsInstance._
 
-/**
- * Created by tim on 15/08/07.
- */
+trait Fuge[A]{def method:Unit}
+
+
 object Main extends App{
 
-  val tes = MyList(1,2,3) |+| MyList(1,2,3)
+  def foo(implicit fuge:Fuge[String])=fuge.method
 
-  val tes2 = MyOption(1) |+|  MyOption(2)
+  implicit val fuge = new Fuge[String]{def method=println("fuge")}
 
-  println(s"${tes2}")
+  foo
+
 
 }
